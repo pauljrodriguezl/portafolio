@@ -1,0 +1,31 @@
+@mixin boton($colors...) {
+    @if $botones {
+        .boton {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: var(--font-medium);
+            background-color:  map-get($boton-colores, nth($colors, 1));
+            color:  map-get($texto-colores, nth($colors, 1));
+
+            a {
+                text-decoration: none;
+            }
+
+            @if length($colors) > 1 {
+                @for $i from 1 through length($colors) {
+                    &.#{nth($colors,$i)} {
+                        background-color: map-get($boton-colores, nth($colors, $i));
+                        color:  map-get($texto-colores, nth($colors, $i));
+                        border: 2px solid map-get($borde-colores, nth($colors, $i));
+                    }
+
+                    &.#{nth($colors,$i)}:hover {
+                        background-color: map-get($texto-colores, nth($colors, $i));
+                        color:  map-get($boton-colores, nth($colors, $i));
+                        border: 2px solid map-get($borde-colores, nth($colors, $i));
+                    }
+                }
+            }
+        }
+    }
+}
